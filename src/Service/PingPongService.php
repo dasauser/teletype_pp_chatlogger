@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Component\Message\MessageInterface;
 use App\Component\TeletypeToken;
+use App\Exception\TeletypeException;
 
 class PingPongService
 {
@@ -30,7 +31,14 @@ class PingPongService
             ->setHeaders(['X-Auth-Token' => $this->token])
             ->setData(['dialogId' => $dialogId, 'text' => 'pong!'])
             ->send();
-        return $response->isOk;
+        if ($response->isOk) {
+            return true;
+        }
+        switch ($response->statusCode) {
+            // Что-нибудь с enum и с кучей разнотипных исключений.
+            default:
+                throw new TeletypeException('Some teletype error ');
+        }
     }
 
     protected static function hasPing(MessageInterface $message): bool
