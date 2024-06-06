@@ -3,10 +3,14 @@
 namespace App\Service;
 
 use App\Component\Message\MessageInterface;
+use App\Component\TeletypeToken;
 
 class PingPongService
 {
-    public function __construct(protected \yii\httpclient\Client $httpClient)
+    public function __construct(
+        protected \yii\httpclient\Client $httpClient,
+        protected TeletypeToken $token
+    )
     {
     }
 
