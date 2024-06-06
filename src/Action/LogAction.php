@@ -18,6 +18,6 @@ class LogAction extends Action
         } catch (UnknownNotificationType) {
             throw new BadRequestHttpException("Unknown notification type");
         }
-        return $notification;
+        return 'success';
     }
 }
