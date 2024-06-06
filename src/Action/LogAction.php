@@ -20,9 +20,7 @@ class LogAction extends Action
         try {
             $notification = $this->container->get(NotificationFactory::class)->create($this->postData);
 
-            $logger = $this->container
-                ->get(NotificationLoggerFactory::class, ['logDir' => \Yii::getAlias('@runtime/log')])
-                ->create($notification);
+            $logger = $this->container->get(NotificationLoggerFactory::class)->create($notification);
 
             $logger->log(Level::Info, $notification);
         } catch (UnknownNotificationType) {
