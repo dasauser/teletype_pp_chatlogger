@@ -23,6 +23,8 @@ class LogAction extends Action
             $logger = $this->container
                 ->get(NotificationLoggerFactory::class, ['logDir' => \Yii::getAlias('@runtime/log')])
                 ->create($notification);
+
+            $logger->log(Level::Info, $notification);
         } catch (UnknownNotificationType) {
             throw new BadRequestHttpException("Unknown notification type");
         }

@@ -6,6 +6,6 @@ class ClientMessageNotification extends BaseMessageNotification implements Notif
 {
     public function __toString(): string
     {
-        // TODO: Implement __toString() method.
+        return $this->data['message'];
     }
 }
