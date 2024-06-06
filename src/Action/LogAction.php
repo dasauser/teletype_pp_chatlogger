@@ -3,21 +3,30 @@
 namespace App\Action;
 
 use App\Exception\UnknownNotificationType;
+use App\Factory\NotificationLoggerFactory;
 use App\Factory\NotificationFactory;
+use Monolog\Level;
 use yii\base\Action;
+use yii\di\Container;
 use yii\web\BadRequestHttpException;
 
 class LogAction extends Action
 {
     public array $postData = [];
+    public ?Container $container = null;
 
     public function run()
     {
         try {
-            $notification = \Yii::$container->get(NotificationFactory::class)->create($this->postData);
+            $notification = $this->container->get(NotificationFactory::class)->create($this->postData);
+
+            $logger = $this->container
+                ->get(NotificationLoggerFactory::class, ['logDir' => \Yii::getAlias('@runtime/log')])
+                ->create($notification);
         } catch (UnknownNotificationType) {
             throw new BadRequestHttpException("Unknown notification type");
         }
+
         return 'success';
     }
 }

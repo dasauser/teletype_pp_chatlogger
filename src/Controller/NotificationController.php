@@ -12,6 +12,7 @@ class NotificationController extends BaseController
             'index' => [
                 'class' => LogAction::class,
                 'postData' => \Yii::$app->request->post(),
+                'container' => \Yii::$container,
             ],
         ];
     }
