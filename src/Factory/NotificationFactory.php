@@ -14,9 +14,11 @@ class NotificationFactory
      */
     public function create(array $postData): NotificationInterface
     {
+        $isItClient = (bool)($postData['isItClient'] ?? false);
+
         return match(true) {
-            isset($postData['client']) => new ClientMessageNotification($postData),
-            isset($postData['operator']) => new OperatorMessageNotification($postData),
+            $isItClient && isset($postData['client']) => new ClientMessageNotification($postData),
+            isset($postData['operator']) && !$isItClient => new OperatorMessageNotification($postData),
             default => throw new UnknownNotificationType()
         };
     }
