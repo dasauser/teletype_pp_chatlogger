@@ -1,6 +1,5 @@
 # Ping Pong Chat Logger
-
-```shell
-composer install
-docker composer up -d
-```
+- Copy `config/env-params.php.example` to `env-params.php` 
+- Set params.
+- `composer install`
+- `docker composer up -d`
