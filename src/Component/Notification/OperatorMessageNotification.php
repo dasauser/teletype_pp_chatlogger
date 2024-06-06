@@ -6,6 +6,10 @@ class OperatorMessageNotification extends BaseMessageNotification implements Not
 {
     public function __toString(): string
     {
-        return $this->data['message'];
+        return sprintf(
+            "dialogId: %s, messageId: %s",
+            $this->data['dialogId'] ?? 'empty',
+            $this->data['messageId'] ?? 'empty',
+        );
     }
 }

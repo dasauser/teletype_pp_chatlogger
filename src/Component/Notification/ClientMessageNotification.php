@@ -6,6 +6,13 @@ class ClientMessageNotification extends BaseMessageNotification implements Notif
 {
     public function __toString(): string
     {
-        return $this->data['message'];
+        $clientId = $this->data['client']['id'] ?? 'empty';
+        $clientName = $this->data['client']['name'] ?? 'empty';
+        return sprintf(
+            "client: %s, dialogId: %s, text: %s",
+            "$clientId, $clientName",
+            $this->data['dialogId'] ?? 'empty',
+            $this->data['text'] ?? 'empty',
+        );
     }
 }
