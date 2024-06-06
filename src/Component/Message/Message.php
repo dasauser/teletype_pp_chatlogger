@@ -13,7 +13,7 @@ class Message implements MessageInterface
         return $this->dialogId;
     }
 
-    public function getText(): int
+    public function getText(): string
     {
         return $this->text;
     }

@@ -8,5 +8,5 @@ interface MessageInterface
 
     public function getDialogId(): int;
 
-    public function getText(): int;
+    public function getText(): string;
 }
