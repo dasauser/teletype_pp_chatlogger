@@ -5,7 +5,8 @@
     "yiisoft/yii2": "2.0.50",
     "psr/log": "~3.0",
     "monolog/monolog": "~3.0",
-    "samdark/yii2-psr-log-target": "~1.1.4"
+    "samdark/yii2-psr-log-target": "~1.1.4",
+    "yiisoft/yii2-httpclient": "~2.0.15"
   },
   "repositories": [
     {
