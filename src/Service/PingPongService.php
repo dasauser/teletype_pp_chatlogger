@@ -23,7 +23,14 @@ class PingPongService
 
     protected function sendPong(int $dialogId): bool
     {
-        return true;
+        // Пока пусть будет так...
+        $response = $this->httpClient->createRequest()
+            ->setMethod('POST')
+            ->setUrl('https://api.teletype.app/public/api/v1/message/send')
+            ->setHeaders(['X-Auth-Token' => $this->token])
+            ->setData(['dialogId' => $dialogId, 'text' => 'pong!'])
+            ->send();
+        return $response->isOk;
     }
 
     protected static function hasPing(MessageInterface $message): bool
