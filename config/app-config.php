@@ -13,5 +13,14 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => false,
         ],
+        'log' => [
+            'traceLevel' => 3,
+            'targets' => [
+                'file' => [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+            ]
+        ]
     ],
 ];
